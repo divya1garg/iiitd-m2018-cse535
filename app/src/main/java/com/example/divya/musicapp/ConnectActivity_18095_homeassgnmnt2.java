@@ -6,12 +6,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.TextView;
@@ -33,8 +35,8 @@ public class ConnectActivity_18095_homeassgnmnt2 extends Service {
 
     boolean WifiConnected;
     boolean MobileConnected;
-    MediaPlayer mediaPlayer;
     TextView connect;
+    MediaPlayer mPlayer;
     DownloadManager downloadManager;
     public  ConnectActivity_18095_homeassgnmnt2() {
     }
@@ -83,11 +85,23 @@ public class ConnectActivity_18095_homeassgnmnt2 extends Service {
             request.setDestinationInExternalFilesDir(getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, "s1.mp3");
             Long reference = downloadManager.enqueue(request);
         }
+        File sub = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "s1.mp3");
+
+        Uri myUri1 = Uri.fromFile(sub);
+          mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mPlayer.setDataSource(getApplicationContext(), myUri1);
+            mPlayer.prepare();
+            mPlayer.start();
+        }catch(Exception e){}
+
         return status;
     }
     @Override
     public void onDestroy() {
             super.onDestroy();
+            mPlayer.stop();
         }
 }
 

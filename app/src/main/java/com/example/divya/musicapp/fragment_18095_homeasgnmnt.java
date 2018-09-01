@@ -77,6 +77,8 @@ public class fragment_18095_homeasgnmnt extends Fragment {
             public void onClick(View v) {
                 Intent stopIntent = new Intent(getActivity().getApplicationContext(), MusicService_18095_homeasgnmnt2.class);
                 getActivity().stopService(stopIntent);
+                Intent stopIntent2 = new Intent(getActivity().getApplicationContext(),ConnectActivity_18095_homeassgnmnt2.class);
+                getActivity().stopService(stopIntent2);
             }
         });
         buttoncheck_conn.setOnClickListener(new View.OnClickListener() {
