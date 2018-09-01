@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ public class fragment_18095_homeasgnmnt extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+
+        Toast.makeText(getActivity().getApplicationContext(),"fragment created", Toast.LENGTH_SHORT).show();
         super.onViewCreated(view, savedInstanceState);
         buttonPlay=(ImageButton) view.findViewById(R.id.play) ;
         buttonStop = (ImageButton) view.findViewById(R.id.stop);

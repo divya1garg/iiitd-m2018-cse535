@@ -74,8 +74,10 @@ public class ConnectActivity_18095_homeassgnmnt2 extends Service {
             status = "Not Connected";
         }
         Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
-        if (status == "Not Connected")
+        if (status == "Not Connected") {
+            Toast.makeText(getApplicationContext(),"Not Connected", Toast.LENGTH_SHORT).show();
             onDestroy();
+        }
         if (status != "Not Connected")
         {
             downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
@@ -83,6 +85,7 @@ public class ConnectActivity_18095_homeassgnmnt2 extends Service {
             DownloadManager.Request request = new DownloadManager.Request(uri);
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             request.setDestinationInExternalFilesDir(getApplicationContext(), Environment.DIRECTORY_DOWNLOADS, "s1.mp3");
+            Toast.makeText(getApplicationContext(),"Song saved internal storage", Toast.LENGTH_SHORT).show();
             Long reference = downloadManager.enqueue(request);
         }
         File sub = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "s1.mp3");
@@ -94,6 +97,7 @@ public class ConnectActivity_18095_homeassgnmnt2 extends Service {
             mPlayer.setDataSource(getApplicationContext(), myUri1);
             mPlayer.prepare();
             mPlayer.start();
+            Toast.makeText(getApplicationContext(),"song playing from internal storage", Toast.LENGTH_SHORT).show();
         }catch(Exception e){}
 
         return status;

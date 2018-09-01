@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MusicService_18095_homeasgnmnt2 extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        Toast.makeText(getApplicationContext(),"Music Service started", Toast.LENGTH_SHORT).show();
         int resId=intent.getIntExtra("res",0);
         if(mPlayer!=null)
             mPlayer.release();
@@ -42,6 +44,7 @@ public class MusicService_18095_homeasgnmnt2 extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Toast.makeText(getApplicationContext(),"Service Stopped", Toast.LENGTH_SHORT).show();
         mPlayer.stop();
     }
 
